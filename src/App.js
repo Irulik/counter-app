@@ -1,25 +1,30 @@
-import logo from './logo.svg';
 import './App.css';
+import React from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { decrement, increment } from "./toolkitRedux/toolkitReducer"
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
-}
+    const count = useSelector(state => state.toolkitReducer.count);
+    // const todos = useSelector((state) => state.tookitReducer.todos);
+    const dispatch = useDispatch();
+
+
+    return (
+        <div className="app">
+            <h1 className="count">Counter {count}</h1>
+            <button className="btn" onClick={() => dispatch(increment())}>Increment</button>
+            <button className="btn" onClick={() => dispatch(decrement())}>Decrement</button>
+            {/* <button style={styles.btn} onClick={() => dispatch(removeLastTodo())}>Видалити останній ТУДУ</button>
+            <button style={styles.btn} onClick={() => dispatch(addTodo(prompt()))}>Додати ТУДУ</button> */}
+            <ul>
+                {/* {todos.map(todo =>
+                    <li style={styles.item} key={todo}>{todo}</li>
+                )}, */}
+            </ul>
+        </div>
+    );
+};
+
 
 export default App;
